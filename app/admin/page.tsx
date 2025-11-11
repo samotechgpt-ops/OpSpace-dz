@@ -1,0 +1,4 @@
+'use client';import {useState} from 'react';
+export default function AdminPage(){const [email,setEmail]=useState('');const [role,setRole]=useState('PARTICIPANT');const [password,setPassword]=useState('');
+async function createUser(){const r=await fetch('/api/admin/users',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,role,password})});alert(await r.text());}
+return (<div className='hero'><h1>Admin — gestion des comptes</h1><div className='card'><label>Email</label><input value={email} onChange={e=>setEmail(e.target.value)}/><label>Rôle</label><select value={role} onChange={e=>setRole(e.target.value)}><option>ADMIN</option><option>FORMATEUR</option><option>PARTICIPANT</option></select><label>Mot de passe</label><input value={password} onChange={e=>setPassword(e.target.value)}/><div style={{marginTop:12}}><button className='btn' onClick={createUser}>Créer</button></div></div></div>);}
